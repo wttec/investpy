@@ -17,7 +17,7 @@ import requests
 from lxml.html import fromstring
 
 
-def economic_calendar(time_zone=None, time_filter='time_only', countries=None, importances=None, categories=None, from_date=None, to_date=None):
+def economic_calendar(time_zone=None, time_filter='time_only', countries=None, importances=None, categories=None, from_date=None, to_date=None, proxy=None):
     """
     This function retrieves the economic calendar, which covers financial events and indicators from all over the world
     updated in real-time. By default, the economic calendar of the currrent day from you local timezone will be retrieved, but
@@ -205,7 +205,7 @@ def economic_calendar(time_zone=None, time_filter='time_only', countries=None, i
                 'importance[]': def_importances
             })
 
-    req = requests.post(url, headers=headers, data=data)
+    req = requests.post(url, headers=headers, data=data,proxy=proxy)
 
     root = fromstring(req.json()['data'])
     table = root.xpath(".//tr")
