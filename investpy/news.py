@@ -205,7 +205,7 @@ def economic_calendar(time_zone=None, time_filter='time_only', countries=None, i
                 'importance[]': def_importances
             })
 
-    req = requests.post(url, headers=headers, data=data,proxy=proxy)
+    req = requests.post(url, headers=headers, data=data,proxies=proxy)
 
     root = fromstring(req.json()['data'])
     table = root.xpath(".//tr")
